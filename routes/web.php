@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('todos','App\Http\Controllers\TodosController@index');
+
+// add the whole path for the controller
+Route::get('todos/{todo}', 'App\Http\Controllers\TodosController@show');
+
+Route::get('new-todos', 'App\Http\Controllers\TodosController@create');
+
+Route::post('store-todos', 'App\Http\Controllers\TodosController@store');
+
