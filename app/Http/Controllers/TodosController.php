@@ -42,5 +42,51 @@ class TodosController extends Controller
 
         return redirect('/todos');
     }
+    public function edit($todoid){
+        $todo = Todo::find($todoid);
+
+        return view('todos.edit')->with('todo', $todo);
+
+    }
+    public function update($todoid){
+        // validates the data added on the name and descripion part
+
+        $this ->validate(request(),[
+            'name' => 'required|min:6 |max:12',
+            'description' => 'required',
+
+        ]);
+
+        // gets all the data
+        $data = request()->all();
+
+        // finds the specific todo using the id
+
+        $todo = Todo::find($todoid);
+        // assigns new values to name and description
+
+        $todo->name = $data['name'];
+        $todo->description = $data['description'];
+
+        // saves the data
+
+        $todo->save();
+
+        // redirecs to the todos part after saving
+        return redirect('/todos');
+    }
+    public function destroy($todoid){
+        // finds the specific id to delete
+
+        $todo=Todo::find($todoid);
+
+        // delete the todo that has been found
+        $todo->delete();
+
+        // redirect to the todos page
+        return redirect('/todos');
+
+
+    }
     
 }

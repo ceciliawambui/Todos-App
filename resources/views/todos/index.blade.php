@@ -12,7 +12,7 @@
                 <div class="card card-default">
                     <div class="card-header">
                         Todos
-                        <a href="/create"><span class="btn btn-primary btn-sm float-right ">Create Todo</span></a>
+                        <!-- <a href="/create"><span class="btn btn-primary btn-sm float-right ">Create Todo</span></a> -->
                     </div>
                     <div class="card-header">
 
