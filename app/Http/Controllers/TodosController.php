@@ -101,5 +101,17 @@ class TodosController extends Controller
 
 
     }
+    public function complete(Todo $todo){
+ 
+        $todo->completed = true;
+
+        $todo->save();
+
+        session()->flash("success","Todo successfully completed");
+
+        return redirect ('/todos');
+
+
+    }
     
 }
