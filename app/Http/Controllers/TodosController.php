@@ -14,10 +14,10 @@ class TodosController extends Controller
         $todos=Todo::all();
         return view('todos.index')->with('todos', $todos);
     }
-    public function show($todoid){
+    public function show(Todo $todo){
         // use this display something after /todos/you enter anything and its displayed
         // dd($todoid);
-        return view('todos.show')->with('todo', Todo::find($todoid));
+        return view('todos.show')->with('todo', $todo);
 
     }
     public function create(){
@@ -42,13 +42,14 @@ class TodosController extends Controller
 
         return redirect('/todos');
     }
-    public function edit($todoid){
-        $todo = Todo::find($todoid);
+    // type hint that you need the todo and so you won't need to find the todo as it will automatically get the todo for you
+    public function edit(Todo $todo){
+        // $todo = Todo::find($todoid);
 
         return view('todos.edit')->with('todo', $todo);
 
     }
-    public function update($todoid){
+    public function update(Todo $todo){
         // validates the data added on the name and descripion part
 
         $this ->validate(request(),[
@@ -62,7 +63,7 @@ class TodosController extends Controller
 
         // finds the specific todo using the id
 
-        $todo = Todo::find($todoid);
+        // $todo = Todo::find($todoid);
         // assigns new values to name and description
 
         $todo->name = $data['name'];
@@ -75,10 +76,10 @@ class TodosController extends Controller
         // redirecs to the todos part after saving
         return redirect('/todos');
     }
-    public function destroy($todoid){
+    public function destroy(Todo $todo){
         // finds the specific id to delete
 
-        $todo=Todo::find($todoid);
+        // $todo=Todo::find($todoid);
 
         // delete the todo that has been found
         $todo->delete();
