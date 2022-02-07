@@ -33,6 +33,13 @@
   </div>
 </nav>
     <div class="container">
+<!-- Flash messaging to different functions in the app, use session -->
+    @if(session()->has('success'))
+
+    <div class="alert alert-success">
+      {{session()->get('success') }}
+    </div>
+    @endif
         @yield('content')
 
     </div>
